@@ -1,0 +1,123 @@
+package chrTreFar;
+
+public class Present {
+
+    private char[][] present;
+    private static int type;
+
+    public Present(){
+        present = new char[3][3];
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                present[y][x] = '0';
+            }
+        }
+    }
+
+    public Present(int type){
+        this.type = type;
+        present = new char[3][3];
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                present[y][x] = '0';
+            }
+        }
+        if(type == 0){
+            present[1][2] = ' ';
+            present[2][2] = ' ';
+        } else if(type == 1){
+            present[1][2] = ' ';
+            present[2][0] = ' ';
+        } else if(type == 2){
+            present[0][0] = ' ';
+            present[2][2] = ' ';
+        } else if(type == 3){
+            present[0][2] = ' ';
+            present[2][2] = ' ';
+        } else if(type == 4){
+            present[1][1] = ' ';
+            present[1][2] = ' ';
+        } else if(type == 5){
+            present[1][0] = ' ';
+            present[1][2] = ' ';
+        }
+    }
+
+    public char[][] getPresent(){
+        return present;
+    }
+
+    public void showPresent(){
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                System.out.print("[" + present[y][x] + "]");
+            }
+            System.out.println();
+        }
+    }
+
+    public void rotate(){
+        char[][] temp = new char[3][3];
+        int c = 0;
+        for(int y =0; y<3; y++){
+            //temp[y] = new char[3];
+            for(int x =0; x<3; x++){
+                temp[y][x] = present[y][x];
+                if(present[y][x] == '0'){
+                    c++;
+                }
+            }
+        }
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                present[y][x] = temp[2-x][y];
+            }
+        }
+        //System.out.println("///rotate --- " + c + " records of 0");
+        /*present[0][0] = temp[2][0];
+        present[0][1] = temp[1][0];
+        present[0][2] = temp[0][0];
+        present[1][0] = temp[2][1];
+        present[1][1] = temp[1][1];
+        present[1][2] = temp[0][1];
+        present[2][0] = temp[2][2];
+        present[2][1] = temp[1][2];
+        present[2][2] = temp[0][2];*/
+    }
+
+    public void flipH(){
+        char[][] temp = new char[3][3];
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                temp[y][x] = present[y][x];
+            }
+        }
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                if(x == 0)
+                    present[y][x] = temp[y][2];
+                else if(x == 2)
+                    present[y][x] = temp[y][0];
+            }
+        }
+    }
+
+    public void flipV(){
+        char[][] temp = new char[3][3];
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                temp[y][x] = present[y][x];
+            }
+        }
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                if(y == 0)
+                    present[y][x] = temp[2][x];
+                else if(y == 2)
+                    present[y][x] = temp[0][x];
+            }
+        }
+    }
+
+
+}
