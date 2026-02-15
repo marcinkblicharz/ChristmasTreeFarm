@@ -1,5 +1,7 @@
 package chrTreFar;
 
+import com.sun.source.tree.BreakTree;
+
 public class Bag {
 
     private int row;
@@ -29,14 +31,20 @@ public class Bag {
         }
     }
 
-    public void putPresent(int indexY, int indexX, char[][] present){
+    public boolean putPresent(int indexY, int indexX, char[][] present){
         System.out.println("indexY: " + indexY + ", indexX: " + indexX + ", row: " + row + ", col: " + col);
         if(indexY < row-2 && indexX < col-2){
             for(int y =0; y<3; y++){
                 for(int x =0; x<3; x++){
-                    if(present[y][x] == '0'){
-                        bag[indexY+y][indexX+x] = present[y][x];
-                    }else {
+                    System.out.print("B:" + (indexY+y) + "-" + (indexX+x) + "=" + bag[indexY+y][(indexX+x)] + "|P:" + y + "-" + x + "=" + present[y][x] + "|| ");
+                    if(present[y][x] != ' '){
+                        if(bag[indexY+y][indexX+x] == ' '){
+                            bag[indexY+y][indexX+x] = present[y][x];
+                        }else{
+                            System.out.println("BAG [" + (indexY+y) + "][" + (indexX+x) + "] NOT FREE");
+                            return false;
+                        }
+                    } else {
                         //bag[indexY+y][indexX+x] = '-';
                     }
                     //System.out.print("[" + present[y][x] + "]");
@@ -46,6 +54,8 @@ public class Bag {
             //System.out.println("END LOG FILL BAG");
         } else {
             System.out.println("!!! Indexes are incorrect !!!");
+            return false;
         }
+    return true;
     }
 }

@@ -19,7 +19,7 @@ public class Present {
         present = new char[3][3];
         for(int y =0; y<3; y++){
             for(int x =0; x<3; x++){
-                present[y][x] = '0';
+                present[y][x] = (char)('0' + type);
             }
         }
         if(type == 0){
