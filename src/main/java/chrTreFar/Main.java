@@ -1,9 +1,7 @@
 package chrTreFar;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +9,7 @@ public class Main {
 
         int width = 4;//12
         int height = 4;//5
-        int[] content = {0, 0, 0, 0, 2, 0};
+        int[] content = {1, 0, 0, 0, 1, 0};
         int bag_size = width * height;
         int presents_size = 0;
         Map<Integer, Integer> presentsMap = new HashMap<Integer, Integer>();
@@ -41,16 +39,16 @@ public class Main {
 
 
         Bag B = new Bag(height, width);
-        //B.clearBag();
-        //B.showBag();
+        B.clearBag();
+        B.showBag();
 
-        Present P0_1 = new Present(0);
+        /*Present P0_1 = new Present(0);
         Present P0_2 = new Present(1);
         Present P1 = new Present(1);
         System.out.println("--P0_1, type: " + P0_1.getType());
         P0_1.showPresent();
         System.out.println("--P0_2, type: " + P0_2.getType());
-        P0_2.showPresent();
+        P0_2.showPresent();*/
         /*System.out.println("--P1");
         P1.showPresent();
         System.out.println("---show 0");
@@ -81,6 +79,14 @@ public class Main {
         P0_1.showPresent();
         System.out.println();*/
 
+        /*Present P0_1 = new Present(4);
+        System.out.println("--P0_1");
+        P0_1.showPresent();
+        System.out.println("--P0_1, rotate, rotate");
+        P0_1.rotate();
+        P0_1.rotate();
+        P0_1.showPresent();*/
+
         /*B.clearBag();
         P0_2.rotate();
         P0_2.rotate();
@@ -107,17 +113,24 @@ public class Main {
         System.out.println();*/
 
         boolean find = false;
-        B.clearBag();
+       /* B.clearBag();
         System.out.println("PUT " + B.putPresent(0, 0, P0_1.getPresent()));
         B.showBag();
         B.removePresent(0, 0, P0_1.getPresent());
         System.out.println("---");
-        B.showBag();
+        B.showBag();*/
 
         System.out.println();
         if (presents_size <= bag_size) {
-        System.out.println("START find");
-            for (int y = 0; y < height - 2; y++) {
+            System.out.println("START find");
+            for(int i=0; i<presentList.size(); i++){
+                System.out.println("Present " + (i+1) + ".- type: " +  presentList.get(i).getType());
+                for (char[][] pos : getAllPositions(presentList.get(i))) {
+                    showPresentPosition(pos);
+                    System.out.println();
+                }
+            }
+            /*for (int y = 0; y < height - 2; y++) {
                 for (int x = 0; x < width - 2; x++) {
                     for (int r = 0; r < 4; r++) {
                         //System.out.println();
@@ -136,14 +149,65 @@ public class Main {
             if (find)
                 System.out.println("FIND");
             else
-                System.out.println("NOT FIND");
+                System.out.println("NOT FIND");*/
             //System.out.println("PUT " + B.putPresent(0, 0, P0_2.getPresent()));
         } else {
             System.out.println("TO MANY PRESENTS");
         }
+        System.out.println("END find");
         B.showBag();
 
 
         System.out.println("Goodbye!");
+    }
+
+    private static List<char[][]> getAllPositions (Present present){
+        List<char[][]> listAll = new ArrayList<>();
+
+        Present copy = present.getCopy();
+        for(int i = 0; i < 4; i++){
+            listAll.add(presentCopy(copy.getPresent()));
+            copy.flipH();
+            listAll.add(presentCopy(copy.getPresent()));
+            copy.flipH();
+            copy.flipV();
+            listAll.add(presentCopy(copy.getPresent()));
+            copy.flipV();
+            copy.rotate();
+        }
+
+        List<char[][]> finalList = new ArrayList<>();
+        for(char[][] all : listAll){
+            boolean exists = false;
+            for(char[][] fin : finalList){
+                if(Arrays.deepEquals(all, fin)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                finalList.add(all);
+            }
+        }
+        return finalList;
+    }
+
+    private static void showPresentPosition(char[][] present){
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                System.out.print("[" + present[y][x] + "]");
+            }
+            System.out.println();
+        }
+    }
+
+    private static char[][] presentCopy (char[][] present){
+        char[][] copy = new char[3][3];
+        for(int y =0; y<3; y++){
+            for(int x =0; x<3; x++){
+                copy[y][x] = present[y][x];
+            }
+        }
+        return copy;
     }
 }
