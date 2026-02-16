@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello and welcome!");
 
-        int width = 4;//12
-        int height = 4;//5
-        int[] content = {2, 0, 0, 0, 0, 0};
+        int width = 12;//12
+        int height = 5;//5
+        int[] content = {1, 0, 1, 0, 2, 2};
         int bag_size = width * height;
         int presents_size = 0;
         Map<Integer, Integer> presentsMap = new HashMap<Integer, Integer>();
@@ -29,10 +29,14 @@ public class Main {
         }
         presents_size = presentList.size() * 7;
         System.out.println("Is " + presentList.size() + " presents with " + presents_size + "(all) fields into bag size: " + bag_size);
+        for(int i=0; i<presentList.size(); i++) {
+            System.out.println("Present " + (i + 1) + ".- type: " + presentList.get(i).getType());
+            presentList.get(i).showPresent();
+        }
 
         Bag B = new Bag(height, width);
         B.clearBag();
-        B.showBag();
+        //B.showBag();
 
         boolean find = false;
 
@@ -41,39 +45,30 @@ public class Main {
             System.out.println("START find");
             for(int i=0; i<presentList.size(); i++){
                 System.out.println("Present " + (i+1) + ".- type: " +  presentList.get(i).getType());
+                boolean put = false;
                 for (char[][] pos : getAllPositions(presentList.get(i))) {
-                    for (int y = 0; y < height; y++) {
-                        for (int x = 0; x < width; x++) {
-                            if (B.checkPlace(y, x, presentList.get(i).getPresent())){
-                                System.out.println("PUT " + B.putPresent(y, x, presentList.get(i).getPresent()));
+                    //showPresentPosition(pos);
+                    //for (char[][] present : pos) {
+
+                        for (int y = 0; y < height && !put; y++) {
+                            for (int x = 0; x < width && !put; x++) {
+                                if (B.checkPlace(y, x, pos)) {
+                                    System.out.println("PUT " + B.putPresent(y, x, pos));
+                                    System.out.println("Present(" + i + "), y: " + y + ", x: " + x);
+                                    B.showBag();
+                                    put = true;
+                                }
                             }
                         }
-                    }
+                        if(put){
+                            break;
+                        }
+                    //}
+
                     //showPresentPosition(pos);
                     //System.out.println();
                 }
             }
-            /*for (int y = 0; y < height - 2; y++) {
-                for (int x = 0; x < width - 2; x++) {
-                    for (int r = 0; r < 4; r++) {
-                        //System.out.println();
-                        P0_2.rotate();
-                        //System.out.println("--P0_2, y: " + y + ", x: " + x + ", r: " + r);
-                        P0_2.showPresent();
-                        B.showBag();
-                        if (B.checkPlace(y, x, P0_2.getPresent())) {
-                            System.out.println("PUT " + B.putPresent(y, x, P0_2.getPresent()));
-                            find = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (find)
-                System.out.println("FIND");
-            else
-                System.out.println("NOT FIND");*/
-            //System.out.println("PUT " + B.putPresent(0, 0, P0_2.getPresent()));
         } else {
             System.out.println("TO MANY PRESENTS");
         }
