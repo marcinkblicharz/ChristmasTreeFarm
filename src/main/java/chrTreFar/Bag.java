@@ -32,21 +32,21 @@ public class Bag {
     }
 
     public boolean checkPlace(int indexY, int indexX, char[][] present){
-        System.out.println("indexY: " + indexY + ", indexX: " + indexX + ", row: " + row + ", col: " + col);
+        //System.out.println("indexY: " + indexY + ", indexX: " + indexX + ", row: " + row + ", col: " + col);
         if(indexY < row-2 && indexX < col-2){
             for(int y =0; y<3; y++){
                 for(int x =0; x<3; x++){
-                    System.out.print("B:" + (indexY+y) + "-" + (indexX+x) + "=" + bag[indexY+y][(indexX+x)] + "|P:" + y + "-" + x + "=" + present[y][x] + "|| ");
+                    //System.out.print("B:" + (indexY+y) + "-" + (indexX+x) + "=" + bag[indexY+y][(indexX+x)] + "|P:" + y + "-" + x + "=" + present[y][x] + "|| ");
                     if(present[y][x] != ' '){
                         if(bag[indexY+y][indexX+x] != ' '){
-                            System.out.println("BAG [" + (indexY+y) + "][" + (indexX+x) + "] NOT FREE");
+                            //System.out.println("BAG [" + (indexY+y) + "][" + (indexX+x) + "] NOT FREE");
                             return false;
                         }
                     }
                 }
             }
         } else {
-            System.out.println("!!! Indexes are incorrect !!!");
+            //System.out.println("!!! Indexes are incorrect !!!");
             return false;
         }
         return true;
