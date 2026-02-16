@@ -1,9 +1,12 @@
 package chrTreFar;
 
+import lombok.Getter;
+
+@Getter
 public class Present {
 
     private char[][] present;
-    private static int type;
+    private int type;
 
     public Present(){
         present = new char[3][3];
@@ -43,10 +46,6 @@ public class Present {
         }
     }
 
-    public char[][] getPresent(){
-        return present;
-    }
-
     public void showPresent(){
         for(int y =0; y<3; y++){
             for(int x =0; x<3; x++){
@@ -73,16 +72,6 @@ public class Present {
                 present[y][x] = temp[2-x][y];
             }
         }
-        //System.out.println("///rotate --- " + c + " records of 0");
-        /*present[0][0] = temp[2][0];
-        present[0][1] = temp[1][0];
-        present[0][2] = temp[0][0];
-        present[1][0] = temp[2][1];
-        present[1][1] = temp[1][1];
-        present[1][2] = temp[0][1];
-        present[2][0] = temp[2][2];
-        present[2][1] = temp[1][2];
-        present[2][2] = temp[0][2];*/
     }
 
     public void flipH(){
