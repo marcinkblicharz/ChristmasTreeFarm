@@ -17,6 +17,16 @@ public class Present {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public Present(int type){
         this.type = type;
         present = new char[3][3];

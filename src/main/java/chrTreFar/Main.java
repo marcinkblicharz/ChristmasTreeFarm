@@ -1,9 +1,12 @@
 package chrTreFar;
 
-import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
+
+    static long step = 0;
+
     public static void main(String[] args) {
         System.out.println("Hello and welcome!");
 
@@ -12,9 +15,11 @@ public class Main {
         int[] content = {1, 0, 1, 0, 2, 2};
         int bag_size = width * height;
         int presents_size = 0;
+        int step = 0;
+        boolean placedAll = false;
+        DecimalFormat df = new DecimalFormat("###.###");
         Map<Integer, Integer> presentsMap = new HashMap<Integer, Integer>();
         List<Present> presentList = new ArrayList<Present>();
-        //Map<Integer, Integer> presentsMap = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < content.length; i++) {
             //System.out.println("Psesent type[" + i + "]: " + content[i]);
@@ -42,38 +47,23 @@ public class Main {
 
         System.out.println();
         if (presents_size <= bag_size) {
-            System.out.println("START find");
-            for(int i=0; i<presentList.size(); i++){
-                System.out.println("Present " + (i+1) + ".- type: " +  presentList.get(i).getType());
-                boolean put = false;
-                for (char[][] pos : getAllPositions(presentList.get(i))) {
-                    //showPresentPosition(pos);
-                    //for (char[][] present : pos) {
+            String finded = "";
+            System.out.println("START searching");
 
-                        for (int y = 0; y < height && !put; y++) {
-                            for (int x = 0; x < width && !put; x++) {
-                                if (B.checkPlace(y, x, pos)) {
-                                    System.out.println("PUT " + B.putPresent(y, x, pos));
-                                    System.out.println("Present(" + i + "), y: " + y + ", x: " + x);
-                                    B.showBag();
-                                    put = true;
-                                }
-                            }
-                        }
-                        if(put){
-                            break;
-                        }
-                    //}
+            long start = System.currentTimeMillis();
+            placedAll = findPlace(B, presentList, 0);
+            long end = System.currentTimeMillis();
 
-                    //showPresentPosition(pos);
-                    //System.out.println();
-                }
-            }
+            if(placedAll)
+                finded = "FIND";
+            else
+                finded = "NOT FIND";
+            System.out.println(finded + " in " + Main.step + " steps on " + (end - start) + " ms");
         } else {
             System.out.println("TO MANY PRESENTS");
         }
-        System.out.println("END find");
-        B.showBag();
+        if(placedAll)
+            B.showBag();
 
 
         System.out.println("Goodbye!");
@@ -127,5 +117,31 @@ public class Main {
             }
         }
         return copy;
+    }
+
+    public static boolean findPlace(Bag B, List<Present> presentsList, int index) {
+
+        step++;
+
+        while(index < presentsList.size()) {
+            Present present = presentsList.get(index);
+            List<char[][]> allPos = getAllPositions(present);
+
+            for (char[][] current : allPos) {
+                for (int y = 0; y <= B.getRow() - 3; y++) {
+                    for (int x = 0; x <= B.getCol() - 3; x++) {
+                        if (B.checkPlace(y, x, current)) {
+                            B.putPresent(y, x, current);
+                            if (findPlace(B, presentsList, index + 1))
+                                return true;
+                            B.removePresent(y, x, current);
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+        return true;
     }
 }

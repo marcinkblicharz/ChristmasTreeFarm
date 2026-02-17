@@ -1,7 +1,8 @@
 package chrTreFar;
 
-import com.sun.source.tree.BreakTree;
+import lombok.Getter;
 
+@Getter
 public class Bag {
 
     private int row;
@@ -12,6 +13,16 @@ public class Bag {
         this.row = row;
         this.col = col;
         bag = new char[row][col];
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     public void clearBag(){
