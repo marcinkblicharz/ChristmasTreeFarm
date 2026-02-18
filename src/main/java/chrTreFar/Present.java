@@ -2,6 +2,7 @@ package chrTreFar;
 
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 @Getter
@@ -24,13 +25,13 @@ public class Present {
     public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Present present = (Present) obj;
-        return Objects.equals(present , present.type);
+        Present presentObject = (Present) obj;
+        return Arrays.deepEquals(present, presentObject.present);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(present , type);
+        return Objects.hash(present, type, label);
     }
 
     public Present(int type, char label){

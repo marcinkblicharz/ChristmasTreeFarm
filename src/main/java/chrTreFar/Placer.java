@@ -41,7 +41,7 @@ public class Placer {
     }
 
     public void showFieldsInfo(){
-        int bag_size = bag.getCol()*bag.getRow();
+        int bag_size = bag.getCols()*bag.getRows();
         System.out.println("Is " + presentList.size() + " presents with " + presents_size + "(all) fields into bag size: " + bag_size);
     }
 
@@ -93,27 +93,29 @@ public class Placer {
         return finalList;
     }
 
-    public boolean findPlace(Bag B, List<Present> presentsList, int index) {
+    public boolean findPlace(Bag bag, List<Present> presentsList, int index) {
 
         step++;
 
-        while(index >= presentsList.size()) {
+        if(index >= presentsList.size()) {
             return true;
         }
             Present present = presentsList.get(index);
             List<char[][]> allPos = getAllPositions(present);
 
             for (char[][] current : allPos) {
-                for (int y = 0; y <= B.getRow() - 3; y++) {
-                    for (int x = 0; x <= B.getCol() - 3; x++) {
-                        if (B.checkPlace(y, x, current)) {
-                            B.putPresent(y, x, current);
-                            if (findPlace(B, presentsList, index + 1)) {
-                                //System.out.println("Found place at present: " + index + " on location [" + y + "][" + x + "]");
+                for (int y = 0; y <= bag.getRows() - 3; y++) {
+                    for (int x = 0; x <= bag.getCols() - 3; x++) {
+                        if (bag.checkPlace(y, x, current)) {
+                            bag.putPresent(y, x, current);
+                            if (findPlace(bag, presentsList, index + 1)) {
+                                //System.out.println("Found place at next present: " + index + " on location [" + y + "][" + x + "]");
                                 //showPresentPosition(current);
                                 return true;
                             }
-                            B.removePresent(y, x, current);
+                            //System.out.println("Not found place at next present: " + index + " on location [" + y + "][" + x + "]");
+                            //showPresentPosition(current);
+                            bag.removePresent(y, x, current);
                         }
                     }
                 }

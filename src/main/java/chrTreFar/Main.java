@@ -1,7 +1,5 @@
 package chrTreFar;
 
-import java.util.*;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -22,7 +20,7 @@ public class Main {
         boolean find = false;
 
         System.out.println();
-        if (placer.getPresents_size() < bag.getRow()*bag.getCol()) {
+        if (placer.getPresents_size() < bag.getRows()*bag.getCols()) {
             String finded = "";
             System.out.println("START searching");
 
