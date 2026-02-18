@@ -120,7 +120,7 @@ public class Placer {
                     }
                 }
             }
-
+            //System.out.println("Not found place return FALSE");
             return false;
     }
 

@@ -27,5 +27,5 @@ OPIS DZIAŁANIA:
     - utworzenie dla niego listy wszystkich możliwych (niepowtarzającyh się) sposobód obrotu oraz odwrócenia
     - przejście po kolenych polach planszy [0][0] -> [rows][cols]
     - jeśli jest możliwe wstawienie, to klocek jest umieszczany na planszy sprawdzając w rekurencji możliwość wstanienia kolejnego klocka z listy na kolejnym dostępnym polu 
-      - w przypadku jeśli wstawienie tego kolejnego nie jest możliwe, to aktualny klocek jest usuwany i wykonywana jest kolejna próba wstawienia w następnym polu na planszy
+      - w przypadku jeśli wstawienie tego kolejnego nie jest możliwe, to aktualny klocek jest usuwany i wykonywana jest kolejna próba wstawienia w następnym polu na planszy. Dla wyniku FALSE wykonywane jest cofnięcie do próby wstawienia poprzedniego klocka 
 6. W przypadku umieszczenie wszystkich klocków na planych wyświetlana jest informacj o ilości kroków wykonanych w pętli rekurencji, wraz z czasem wykonania oraz wizualizacja umieszczenia klocków na planszy.
