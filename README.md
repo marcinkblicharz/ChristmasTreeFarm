@@ -15,3 +15,6 @@
 | ### | #.# |
 
 3. Z racji założenia, że zarówno plansza (4x4 lub 12x5) oraz same klocki (3x3) są symetryczne, to pozycją startową podczas umieszczania jest 'lewy górny róg', tj. [0][0]. Podczas kolejnych kroków przesuwam sięna planszy w prawo oraz w dół.
+
+
+OPIS DZIAŁANIA
