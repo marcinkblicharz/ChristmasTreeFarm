@@ -2,6 +2,8 @@ package chrTreFar;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Bag {
 
@@ -17,12 +19,15 @@ public class Bag {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if(obj == null || getClass() != obj.getClass())
+            return false;
+        Bag bag = (Bag)obj;
+        return Objects.equals(row, bag.row) && Objects.equals(col, bag.col);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(row, col);
     }
 
     public void clearBag(){
@@ -57,35 +62,25 @@ public class Bag {
                 }
             }
         } else {
-            //System.out.println("!!! Indexes are incorrect !!!");
             return false;
         }
         return true;
     }
 
     public boolean putPresent(int indexY, int indexX, char[][] present){
-        //System.out.println("indexY: " + indexY + ", indexX: " + indexX + ", row: " + row + ", col: " + col);
         if(indexY < row-2 && indexX < col-2){
             for(int y =0; y<3; y++){
                 for(int x =0; x<3; x++){
-                    //System.out.print("B:" + (indexY+y) + "-" + (indexX+x) + "=" + bag[indexY+y][(indexX+x)] + "|P:" + y + "-" + x + "=" + present[y][x] + "|| ");
                     if(present[y][x] != ' '){
                         if(bag[indexY+y][indexX+x] == ' '){
                             bag[indexY+y][indexX+x] = present[y][x];
                         }else{
-                            //System.out.println("BAG [" + (indexY+y) + "][" + (indexX+x) + "] NOT FREE");
                             return false;
                         }
-                    } else {
-                        //bag[indexY+y][indexX+x] = '-';
                     }
-                    //System.out.print("[" + present[y][x] + "]");
                 }
-                //System.out.println();
             }
-            //System.out.println("END LOG FILL BAG");
         } else {
-            //System.out.println("!!! Indexes are incorrect !!!");
             return false;
         }
     return true;

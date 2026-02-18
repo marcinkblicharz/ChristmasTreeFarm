@@ -2,11 +2,14 @@ package chrTreFar;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Present {
 
     private char[][] present;
     private int type;
+    private char label;
 
     public Present(){
         present = new char[3][3];
@@ -19,20 +22,24 @@ public class Present {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Present present = (Present) obj;
+        return Objects.equals(present , present.type);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(present , type);
     }
 
-    public Present(int type){
+    public Present(int type, char label){
         this.type = type;
+        this.label = label;
         present = new char[3][3];
         for(int y =0; y<3; y++){
             for(int x =0; x<3; x++){
-                present[y][x] = (char)('0' + type);
+                present[y][x] = label;
             }
         }
         if(type == 0){
@@ -119,8 +126,9 @@ public class Present {
     }
 
     public Present getCopy(){
-        Present temp = new Present(this.type);
+        Present temp = new Present(this.type, this.label);
         temp.type = this.type;
+        temp.label = this.label;
         for(int y =0; y<3; y++){
             for(int x =0; x<3; x++){
                 temp.present[y][x] = this.present[y][x];
