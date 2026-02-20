@@ -1,4 +1,4 @@
-package chrTreFar;
+package farm;
 
 import lombok.Getter;
 
@@ -8,11 +8,13 @@ import java.util.*;
 public class Placer {
 
     private int[] content;
-    int presents_size;
+    int presentsSize;
     int step;
     Map<Integer, Integer> presentsMap = new HashMap<Integer, Integer>();
     List<Present> presentList = new ArrayList<Present>();
     Bag bag;
+    private static final int WIDTH = 3;
+    private static final int HEIGHT = 3;
 
     private Placer(){
         content = new int[5];
@@ -31,7 +33,7 @@ public class Placer {
                 presentList.add(new Present(i, (char)('A' + present_index++)));
             }
         }
-        presents_size = presentList.size() * 7;
+        presentsSize = presentList.size() * 7;
     }
 
     public void showListOfTypes(){
@@ -42,7 +44,7 @@ public class Placer {
 
     public void showFieldsInfo(){
         int bag_size = bag.getCols()*bag.getRows();
-        System.out.println("Is " + presentList.size() + " presents with " + presents_size + "(all) fields into bag size: " + bag_size);
+        System.out.println("Is " + presentList.size() + " presents with " + presentsSize + "(all) fields into bag size: " + bag_size);
     }
 
     public void showPresents(){
@@ -54,10 +56,8 @@ public class Placer {
 
     private char[][] presentCopy (char[][] present){
         char[][] copy = new char[3][3];
-        for(int y =0; y<3; y++){
-            for(int x =0; x<3; x++){
-                copy[y][x] = present[y][x];
-            }
+        for(int y =0; y<HEIGHT; y++){
+            System.arraycopy(present[y], 0, copy[y], 0, 3);
         }
         return copy;
     }
@@ -67,12 +67,12 @@ public class Placer {
 
         Present copy = present.getCopy();
         for(int i = 0; i < 4; i++){
-            listAll.add(presentCopy(copy.getPresent()));
+            listAll.add(presentCopy(copy.getBlock()));
             copy.flipH();
-            listAll.add(presentCopy(copy.getPresent()));
+            listAll.add(presentCopy(copy.getBlock()));
             copy.flipH();
             copy.flipV();
-            listAll.add(presentCopy(copy.getPresent()));
+            listAll.add(presentCopy(copy.getBlock()));
             copy.flipV();
             copy.rotate();
         }
@@ -104,29 +104,23 @@ public class Placer {
             List<char[][]> allPos = getAllPositions(present);
 
             for (char[][] current : allPos) {
-                for (int y = 0; y <= bag.getRows() - 3; y++) {
-                    for (int x = 0; x <= bag.getCols() - 3; x++) {
+                for (int y = 0; y <= bag.getRows() - HEIGHT; y++) {
+                    for (int x = 0; x <= bag.getCols() - WIDTH; x++) {
                         if (bag.checkPlace(y, x, current)) {
                             bag.putPresent(y, x, current);
-                            if (findPlace(bag, presentsList, index + 1)) {
-                                //System.out.println("Found place at next present: " + index + " on location [" + y + "][" + x + "]");
-                                //showPresentPosition(current);
+                            if (findPlace(bag, presentsList, index + 1))
                                 return true;
-                            }
-                            //System.out.println("Not found place at next present: " + index + " on location [" + y + "][" + x + "]");
-                            //showPresentPosition(current);
                             bag.removePresent(y, x, current);
                         }
                     }
                 }
             }
-            //System.out.println("Not found place return FALSE");
             return false;
     }
 
     public void showPresentPosition(char[][] present){
-        for(int y =0; y<3; y++){
-            for(int x =0; x<3; x++){
+        for(int y =0; y<HEIGHT; y++){
+            for(int x =0; x<WIDTH; x++){
                 System.out.print("[" + present[y][x] + "]");
             }
             System.out.println();

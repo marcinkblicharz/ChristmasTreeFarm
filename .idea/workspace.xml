@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="181396fe-6572-4456-bc3a-97ab47babbe3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chrTreFar/Placer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chrTreFar/Placer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chrTreFar/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/farm/Bag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chrTreFar/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/farm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chrTreFar/Placer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/farm/Placer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chrTreFar/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/farm/Present.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,29 +40,110 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.app_run.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/marcinblicharz/soft/git/marcinkblicharz/ChristmasTreeFarm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.validation&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.app_run.executor": "Run",
+    "Maven.sonar.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/marcinblicharz/soft/git/marcinkblicharz/ChristmasTreeFarm",
+    "settings.editor.selected.configurable": "project.validation"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="app_run" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="homebrew-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="chrTreFar.Main" />
+}]]></component>
+  <component name="RunManager" selected="Application.app_run">
+    <configuration default="true" type="Application" factoryName="Application">
       <module name="ChristmasTreeFarm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="app_run" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="homebrew-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="farm.Main" />
+      <module name="ChristmasTreeFarm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="verify" />
+                <option value="sonar:sonar" />
+                <option value="-Dsonar.projectKey=ChristmasTreeFarm" />
+                <option value="-Dsonar.host.url=http://localhost:9000" />
+                <option value="-Dsonar.login=squ_0b4659e2a5eb416b9869020d1c48b434a6c968f0" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="sonar" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="verify" />
+                <option value="sonar:sonar" />
+                <option value="-Dsonar.projectKey=ChristmasTreeFarm" />
+                <option value="-Dsonar.host.url=http://localhost:9000" />
+                <option value="-Dsonar.login=squ_0b4659e2a5eb416b9869020d1c48b434a6c968f0" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.app_run" />
+      <item itemvalue="Maven.sonar" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

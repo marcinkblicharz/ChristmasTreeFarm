@@ -1,4 +1,4 @@
-package chrTreFar;
+package farm;
 
 public class Main {
 
@@ -17,10 +17,8 @@ public class Main {
         placer.showFieldsInfo();
         placer.showPresents();
 
-        boolean find = false;
-
         System.out.println();
-        if (placer.getPresents_size() < bag.getRows()*bag.getCols()) {
+        if (placer.getPresentsSize() < bag.getRows()*bag.getCols()) {
             String finded = "";
             System.out.println("START searching");
 
